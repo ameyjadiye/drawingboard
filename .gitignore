@@ -1,3 +1,11 @@
+.classpath
+.project
+.settings/
+drawingboard.iml
+
+
+/target
+
 # Compiled class file
 *.class
 
