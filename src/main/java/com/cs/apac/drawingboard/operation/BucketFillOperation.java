@@ -1,17 +1,77 @@
 package com.cs.apac.drawingboard.operation;
 
 import com.cs.apac.drawingboard.entity.holder.Canvas;
+import com.cs.apac.drawingboard.entity.shape.Point;
 import com.cs.apac.drawingboard.util.Command;
 
 public class BucketFillOperation extends FillOperation {
 
     public BucketFillOperation(Command command, Canvas canvas) {
         this.setCanvas(canvas);
+        this.setCommand(command);
     }
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
+
+        Point[][] sheet = this.getCanvas().getSheet();
+        Command command = this.getCommand();
+
+        int x = Integer.valueOf(command.getArgs()[0]);
+        int y = Integer.valueOf(command.getArgs()[1]);
+        char colorToPaint = command.getArgs()[2].toCharArray()[0];
+
+        char colorToReplace = getValueAt(sheet, x - 1, y - 1);
+
+        apply(sheet, colorToReplace, colorToPaint, x - 1, y - 1);
+
+        printCavas();
+
     }
 
+    /**
+     * Implementation of a tail recursive flood fill algorithm to solve this
+     * problem. Flood fill, also called seed fill, is an algorithm that determines
+     * the area connected to a given node in a multi-dimensional array. It is used
+     * in the "bucket" fill tool of paint programs to fill connected,
+     * similarly-colored areas with a different color, and in games such as Go and
+     * Minesweeper for determining which pieces are cleared. When applied on an
+     * image to fill a particular bounded area with color, it is also known as
+     * boundary fill.
+     *
+     * The complexity order of this algorithm in space terms is O(1) because we are
+     * not using any additional data structure to store data temporally. In time
+     * termsn the complexity order is O(N) where N is the number of pixels to change
+     * color.
+     */
+    public void apply(Point[][] picture, char colorToReplace, char colorToPaint, int x, int y) {
+        validatePicture(picture);
+
+        char currentColor = getValueAt(picture, x, y);
+        if (currentColor == colorToReplace) {
+            picture[y][x].setColor(colorToPaint);
+            apply(picture, colorToReplace, colorToPaint, x + 1, y);
+            apply(picture, colorToReplace, colorToPaint, x - 1, y);
+            apply(picture, colorToReplace, colorToPaint, x, y + 1);
+            apply(picture, colorToReplace, colorToPaint, x, y - 1);
+        }
+    }
+
+    private void validatePicture(Point[][] picture) {
+        if (picture == null) {
+            throw new IllegalArgumentException("You can't pass a null instance as picture");
+        }
+    }
+
+    /**
+     * Method created to avoid IndexOutOfBoundExceptions. This method return -1 if
+     * you try to access an invalid position.
+     */
+    private char getValueAt(Point[][] picture, int x, int y) {
+        if (x < 0 || y < 0 || x >= getCanvas().getWidth() || y >= getCanvas().getHeight()) {
+            return (char) -1;
+        } else {
+            return picture[y][x].getColor();
+        }
+    }
 }
