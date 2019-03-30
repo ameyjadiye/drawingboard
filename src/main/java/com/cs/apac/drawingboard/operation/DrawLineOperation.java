@@ -7,11 +7,36 @@ public class DrawLineOperation extends DrawShapeOperation implements DrawOperati
 
     public DrawLineOperation(Command command , Canvas canvas) {
         this.setCanvas(canvas);
+        this.setCommand(command);
     }
 
     @Override
     public void execute() {
-    
+        Command command = this.getCommand();
+        int x1 = Integer.valueOf(command.getArgs()[0]);
+        int y1 = Integer.valueOf(command.getArgs()[1]);
+        int x2 = Integer.valueOf(command.getArgs()[2]);
+        int y2 = Integer.valueOf(command.getArgs()[3]);
+        
+        int height = getCanvas().getHeight(); 
+        int width = getCanvas().getWidth(); 
+        
+        drawLine(x1, y1, x2, y2, height, width);
+        
+        printCavas();
     }
 
+    protected void drawLine(int x1, int y1, int x2, int y2, int height, int width) {
+
+        if (x2 >= width)    { x2 = width;}
+        if (y2 >= height)   { y2 = height;}
+        
+        //Line line  = new Line(x1, y1, x2, y2);
+        
+        for (int row = y1 - 1; row <= y2 - 1 && row < height; row++) {
+            for (int col = x1 - 1; col <= x2 - 1 && col < width; col++) {
+                getCanvas().getSheet()[row][col].setColor(LINE_CHAR);
+            }
+        }
+    }
 }

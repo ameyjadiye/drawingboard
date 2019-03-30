@@ -15,7 +15,7 @@ public class DrawingBoardApp {
 
     public static void main(String ... args) {
         
-        BoardUtils.printHelp();
+        //BoardUtils.printHelp();
         
         while (scanner.hasNextLine()) {
             execute(scanner.nextLine());

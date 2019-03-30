@@ -11,9 +11,11 @@ public abstract class BaseOperation implements Operation, Serializable {
 
     // private char HORIZONTAL_CHAR = '–'; //this one looks nice.
 
-    private char HORIZONTAL_CHAR = '-';
+    public char HORIZONTAL_CHAR = '-';
 
-    private char VERTICAL_CHAR = '|';
+    public char VERTICAL_CHAR = '|';
+
+    public char LINE_CHAR = 'x';
 
     private Command command;
 
