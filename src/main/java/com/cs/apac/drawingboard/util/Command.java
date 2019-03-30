@@ -3,7 +3,6 @@
  */
 package com.cs.apac.drawingboard.util;
 
-
 public class Command {
     
     private String command;

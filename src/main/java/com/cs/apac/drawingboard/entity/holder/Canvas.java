@@ -16,7 +16,7 @@ public class Canvas extends BaseEntity {
         super();
     }
 
-    public Canvas(int height, int widhth) {
+    public Canvas(int widhth, int height) {
         super();
         this.height = height;
         this.width = widhth;
@@ -40,6 +40,34 @@ public class Canvas extends BaseEntity {
      */
     public void setSheet(Point[][] sheet) {
         this.sheet = sheet;
+    }
+    
+    /**
+     * @return the height
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    /**
+     * @return the width
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * @param width the width to set
+     */
+    public void setWidth(int width) {
+        this.width = width;
     }
 
     /**

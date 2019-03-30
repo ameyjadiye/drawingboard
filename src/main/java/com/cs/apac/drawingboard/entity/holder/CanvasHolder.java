@@ -27,5 +27,6 @@ public class CanvasHolder {
             CreateOperation opt = (CreateOperation)operation;
             this.canvas = opt.getCanvas();
         }
+        
     }
 }

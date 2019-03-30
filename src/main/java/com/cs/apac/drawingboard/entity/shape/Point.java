@@ -102,5 +102,15 @@ public class Point extends BaseEntity {
             return false;
         return true;
     }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return String.valueOf(color);
+    }
+    
+    
     
 }
