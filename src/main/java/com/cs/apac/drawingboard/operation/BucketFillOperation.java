@@ -22,8 +22,9 @@ public class BucketFillOperation extends FillOperation {
         Point[][] sheet = this.getCanvas().getSheet();
         Command command = this.getCommand();
 
-        int x = Integer.valueOf(command.getArgs()[0]);
-        int y = Integer.valueOf(command.getArgs()[1]);
+        int x = Integer.parseInt(command.getArgs()[0]);
+        int y = Integer.parseInt(command.getArgs()[1]);
+        
         char colorToPaint = command.getArgs()[2].toCharArray()[0];
 
         if (x > this.getCanvas().getWidth() || y > this.getCanvas().getHeight()) {

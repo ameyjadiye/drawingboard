@@ -23,11 +23,6 @@ public class Canvas extends BaseEntity {
         sheet = new Point[this.height][this.width];
     }
 
-    public Canvas(Point[][] sheet) {
-        super();
-        this.sheet = sheet;
-    }
-
     /**
      * @return the sheet
      */
@@ -35,13 +30,6 @@ public class Canvas extends BaseEntity {
         return sheet;
     }
 
-    /**
-     * @param sheet the sheet to set
-     */
-    public void setSheet(Point[][] sheet) {
-        this.sheet = sheet;
-    }
-    
     /**
      * @return the height
      */
@@ -69,10 +57,10 @@ public class Canvas extends BaseEntity {
     public void setWidth(int width) {
         this.width = width;
     }
-    
+
     public char[][] toCharArray() {
-        char [][] result = new char [height][width];
-        
+        char[][] result = new char[height][width];
+
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 result[i][j] = getSheet()[i][j].getColor();

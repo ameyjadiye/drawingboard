@@ -19,8 +19,8 @@ public class CreateCanvasOperation extends BaseOperation implements CreateOperat
     @Override
     public void createCanvas() {
         Command command = this.getCommand();
-        int width = Integer.valueOf(command.getArgs()[0]);
-        int height = Integer.valueOf(command.getArgs()[1]);
+        int width = Integer.parseInt(command.getArgs()[0]);
+        int height = Integer.parseInt(command.getArgs()[1]);
 
         Canvas canvas = new Canvas(width, height);
 

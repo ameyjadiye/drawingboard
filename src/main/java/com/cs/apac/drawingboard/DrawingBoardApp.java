@@ -10,7 +10,7 @@ import com.cs.apac.drawingboard.util.CommandParser;
 
 public class DrawingBoardApp {
 
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in, "UTF-8");
     private DrawingService service = new DrawingServiceImpl();
 
     public static void main(String... args) {
@@ -21,7 +21,7 @@ public class DrawingBoardApp {
     }
 
     private void startLoop() {
-        System.out.println(BoardUtils.HelpMsg());
+        System.out.println(BoardUtils.helpMsg());
         System.out.print("Enter command $>");
         while (scanner.hasNextLine()) {
             execute(scanner.nextLine());

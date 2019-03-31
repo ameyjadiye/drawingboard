@@ -14,10 +14,10 @@ public class DrawLineOperation extends DrawShapeOperation implements DrawOperati
     @Override
     public void execute() {
         Command command = this.getCommand();
-        int x1 = Integer.valueOf(command.getArgs()[0]);
-        int y1 = Integer.valueOf(command.getArgs()[1]);
-        int x2 = Integer.valueOf(command.getArgs()[2]);
-        int y2 = Integer.valueOf(command.getArgs()[3]);
+        int x1 = Integer.parseInt(command.getArgs()[0]);
+        int y1 = Integer.parseInt(command.getArgs()[1]);
+        int x2 = Integer.parseInt(command.getArgs()[2]);
+        int y2 = Integer.parseInt(command.getArgs()[3]);
 
         Line line = new Line(x1, y1, x2, y2);
 

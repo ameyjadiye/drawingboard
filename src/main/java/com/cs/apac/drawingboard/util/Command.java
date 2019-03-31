@@ -3,6 +3,8 @@
  */
 package com.cs.apac.drawingboard.util;
 
+import java.util.Arrays;
+
 public class Command {
     
     private String command;
@@ -15,7 +17,7 @@ public class Command {
     public Command(String command, String[] args) {
         super();
         this.command = command;
-        this.args = args;
+        this.args = Arrays.copyOf(args, args.length);
     }
 
 
@@ -38,14 +40,14 @@ public class Command {
      * @return the args
      */
     public String[] getArgs() {
-        return args;
+        return Arrays.copyOf(args,args.length);
     }
 
     /**
      * @param args the args to set
      */
     public void setArgs(String[] args) {
-        this.args = args;
+        this.args = Arrays.copyOf(args, args.length);
     }
     
 }

@@ -95,7 +95,7 @@ public class CommandValidator {
         case "Q":
             return true;
         default:
-            throw new NoSuchCommandException("No Such command. " + System.lineSeparator() + BoardUtils.HelpMsg());
+            throw new NoSuchCommandException("No Such command. " + System.lineSeparator() + BoardUtils.helpMsg());
         }
     }
 

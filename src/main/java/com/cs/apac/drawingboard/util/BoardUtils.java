@@ -2,7 +2,7 @@ package com.cs.apac.drawingboard.util;
 
 public class BoardUtils {
     
-    public static String HelpMsg() {
+    public static String helpMsg() {
         String help = "Available Command  Description\n" + 
         "C w h           Creates a new canvas of width w and height h.\n" + 
         "L x1 y1 x2 y2   Creates a new line from (x1,y1) to (x2,y2). Currently only\n" + 
