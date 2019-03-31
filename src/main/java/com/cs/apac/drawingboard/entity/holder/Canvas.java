@@ -69,6 +69,17 @@ public class Canvas extends BaseEntity {
     public void setWidth(int width) {
         this.width = width;
     }
+    
+    public char[][] toCharArray() {
+        char [][] result = new char [height][width];
+        
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                result[i][j] = getSheet()[i][j].getColor();
+            }
+        }
+        return result;
+    }
 
     /**
      * (non-Javadoc)

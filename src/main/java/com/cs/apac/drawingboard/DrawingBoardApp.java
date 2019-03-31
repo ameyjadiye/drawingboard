@@ -10,12 +10,18 @@ import com.cs.apac.drawingboard.util.CommandParser;
 
 public class DrawingBoardApp {
 
-    private static final Scanner scanner = new Scanner(System.in);
-    private static DrawingService service = new DrawingServiceImpl();
+    private Scanner scanner = new Scanner(System.in);
+    private DrawingService service = new DrawingServiceImpl();
 
-    public static void main(String ... args) {
-        
-        //BoardUtils.printHelp();
+    public static void main(String... args) {
+
+        DrawingBoardApp app = new DrawingBoardApp();
+        app.startLoop();
+
+    }
+
+    private void startLoop() {
+        System.out.println(BoardUtils.HelpMsg());
         System.out.print("Enter command $>");
         while (scanner.hasNextLine()) {
             execute(scanner.nextLine());
@@ -23,12 +29,11 @@ public class DrawingBoardApp {
         }
     }
 
-    private static void execute(String consoleInput) {
+    private void execute(String consoleInput) {
         try {
-        Command comamnd = CommandParser.getCommand(consoleInput);
-        service.executeCommand(comamnd);
-        }
-        catch (Exception e) {
+            Command comamnd = CommandParser.getCommand(consoleInput);
+            service.executeCommand(comamnd);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
