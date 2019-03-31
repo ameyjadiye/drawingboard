@@ -31,11 +31,9 @@ public class DrawLineOperation extends DrawShapeOperation implements DrawOperati
         if (x2 >= width)    { x2 = width;}
         if (y2 >= height)   { y2 = height;}
         
-        //Line line  = new Line(x1, y1, x2, y2);
-        
-        for (int row = y1 - 1; row <= y2 - 1 && row < height; row++) {
-            for (int col = x1 - 1; col <= x2 - 1 && col < width; col++) {
-                getCanvas().getSheet()[row][col].setColor(LINE_CHAR);
+        for (int i = y1 - 1; i <= y2 - 1 && i < height; i++) {
+            for (int j = x1 - 1; j <= x2 - 1 && j < width; j++) {
+                getCanvas().getSheet()[i][j].setColor(LINE_CHAR);
             }
         }
     }

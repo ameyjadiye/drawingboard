@@ -16,14 +16,20 @@ public class DrawingBoardApp {
     public static void main(String ... args) {
         
         //BoardUtils.printHelp();
-        
+        System.out.print("Enter command $>");
         while (scanner.hasNextLine()) {
             execute(scanner.nextLine());
+            System.out.print("Enter command $>");
         }
     }
 
     private static void execute(String consoleInput) {
+        try {
         Command comamnd = CommandParser.getCommand(consoleInput);
         service.executeCommand(comamnd);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

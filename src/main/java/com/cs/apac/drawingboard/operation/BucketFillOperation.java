@@ -1,5 +1,7 @@
 package com.cs.apac.drawingboard.operation;
 
+import java.security.InvalidParameterException;
+
 import com.cs.apac.drawingboard.entity.holder.Canvas;
 import com.cs.apac.drawingboard.entity.shape.Point;
 import com.cs.apac.drawingboard.util.Command;
@@ -21,6 +23,10 @@ public class BucketFillOperation extends FillOperation {
         int y = Integer.valueOf(command.getArgs()[1]);
         char colorToPaint = command.getArgs()[2].toCharArray()[0];
 
+        if (x > this.getCanvas().getWidth() || y > this.getCanvas().getHeight()) {
+            throw new InvalidParameterException("Given point is out of canvas!");
+        }
+        
         char colorToReplace = getValueAt(sheet, x - 1, y - 1);
 
         apply(sheet, colorToReplace, colorToPaint, x - 1, y - 1);
@@ -44,22 +50,15 @@ public class BucketFillOperation extends FillOperation {
      * termsn the complexity order is O(N) where N is the number of pixels to change
      * color.
      */
-    public void apply(Point[][] picture, char colorToReplace, char colorToPaint, int x, int y) {
-        validatePicture(picture);
+    public void apply(Point[][] sheet, char colorToReplace, char colorToPaint, int x, int y) {
 
-        char currentColor = getValueAt(picture, x, y);
+        char currentColor = getValueAt(sheet, x, y);
         if (currentColor == colorToReplace) {
-            picture[y][x].setColor(colorToPaint);
-            apply(picture, colorToReplace, colorToPaint, x + 1, y);
-            apply(picture, colorToReplace, colorToPaint, x - 1, y);
-            apply(picture, colorToReplace, colorToPaint, x, y + 1);
-            apply(picture, colorToReplace, colorToPaint, x, y - 1);
-        }
-    }
-
-    private void validatePicture(Point[][] picture) {
-        if (picture == null) {
-            throw new IllegalArgumentException("You can't pass a null instance as picture");
+            sheet[y][x].setColor(colorToPaint);
+            apply(sheet, colorToReplace, colorToPaint, x + 1, y);
+            apply(sheet, colorToReplace, colorToPaint, x - 1, y);
+            apply(sheet, colorToReplace, colorToPaint, x, y + 1);
+            apply(sheet, colorToReplace, colorToPaint, x, y - 1);
         }
     }
 
@@ -67,11 +66,11 @@ public class BucketFillOperation extends FillOperation {
      * Method created to avoid IndexOutOfBoundExceptions. This method return -1 if
      * you try to access an invalid position.
      */
-    private char getValueAt(Point[][] picture, int x, int y) {
+    private char getValueAt(Point[][] sheet, int x, int y) {
         if (x < 0 || y < 0 || x >= getCanvas().getWidth() || y >= getCanvas().getHeight()) {
             return (char) -1;
         } else {
-            return picture[y][x].getColor();
+            return sheet[y][x].getColor();
         }
     }
 }

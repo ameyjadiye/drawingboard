@@ -1,7 +1,9 @@
 package com.cs.apac.drawingboard.entity.holder;
 
+import com.cs.apac.drawingboard.exception.NoCanvasPresentException;
 import com.cs.apac.drawingboard.operation.CreateOperation;
 import com.cs.apac.drawingboard.operation.Operation;
+import com.cs.apac.drawingboard.operation.QuitOperation;
 
 public class CanvasHolder {
 
@@ -20,7 +22,13 @@ public class CanvasHolder {
         
     }
 
-    public void action() {
+    public void action() throws NoCanvasPresentException {
+        
+        if (!(this.operation instanceof CreateOperation || this.operation instanceof QuitOperation) && canvas == null) {
+            throw new NoCanvasPresentException("Please create canvas first");
+        }
+        
+        
         operation.execute();
         
         if (this.operation instanceof CreateOperation) {
