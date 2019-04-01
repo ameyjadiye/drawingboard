@@ -1,5 +1,7 @@
 package com.cs.apac.drawingboard.util;
 
+import com.cs.apac.drawingboard.entity.shape.Point;
+
 public class BoardUtils {
     
     public static String helpMsg() {
@@ -15,5 +17,11 @@ public class BoardUtils {
         "Q               Quit the program.\n"; 
         return help;
     }
+    
+    public static boolean isSafe(Point[][] sheet, int height, int width, int x, int y, char target) {
+        return x >= 0 && x < width && y >= 0 && y < height && sheet[y][x].getColor() == target;
+    }
+
+
     
 }

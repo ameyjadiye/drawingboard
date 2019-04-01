@@ -2,10 +2,14 @@ package com.cs.apac.drawingboard.operation;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayDeque;
+import java.util.HashSet;
 import java.util.Queue;
+import java.util.Set;
 
+import com.cs.apac.drawingboard.entity.Pair;
 import com.cs.apac.drawingboard.entity.holder.Canvas;
 import com.cs.apac.drawingboard.entity.shape.Point;
+import com.cs.apac.drawingboard.util.BoardUtils;
 import com.cs.apac.drawingboard.util.Command;
 
 public class BucketFillOperation extends FillOperation {
@@ -41,57 +45,55 @@ public class BucketFillOperation extends FillOperation {
         printCavas();
 
     }
-    
-    
 
     // Below arrays details all 8 possible movements
-    private static final int[] row = { -1, -1, -1, 0, 0, 1, 1, 1 };
-    private static final int[] col = { -1, 0, 1, -1, 1, -1, 0, 1 };
-
-    public static boolean isSafe(Point[][] M, int m, int n, int x, int y, char target) {
-        return x >= 0 && x < m && y >= 0 && y < n && M[x][y].getColor() == target;
-    }
-
+    private final int[] row = { -1, -1, -1, 0, 0, 1, 1, 1 };
+    private final int[] col = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
     /**
      * Flood fill using BFS
-     * @param M
+     * 
+     * @param sheet
      * @param x
      * @param y
      * @param replacement
      */
-    public static void floodfill(Point[][] M, int x, int y, char replacement) {
-        int m = M.length;
-        int n = M[0].length;
+    public void floodfill(Point[][] sheet, int x, int y, char replacement) {
+        int height = sheet.length;
+        int width = sheet[0].length;
 
-        // create a queue and enqueue starting pixel
-        Queue<Pair> q = new ArrayDeque<>();
-        q.add(new Pair(x, y));
+        // create a queue and enqueue starting Point
+        Queue<Pair> processQueue = new ArrayDeque<>();
+        Set<Pair> marked = new HashSet<Pair>();
+        processQueue.add(new Pair(x, y));
 
-        // get target color
-        char target = M[x][y].getColor();
+        // get target char
+        char target = sheet[y][x].getColor();
 
         // run till queue is not empty
-        while (!q.isEmpty()) {
+        while (!processQueue.isEmpty()) {
             // pop front node from queue and process it
-            Pair node = q.poll();
+            Pair node = processQueue.poll();
 
             // (x, y) represents current pixel
-            x = node.x;
-            y = node.y;
+            x = node.getX();
+            y = node.getY();
 
             // replace current pixel color with that of replacement
-            M[x][y].setColor(replacement);
+            sheet[y][x].setColor(replacement);
 
             // process all 8 adjacent pixels of current pixel and
             // enqueue each valid pixel
-            for (int k = 0; k < row.length; k++) {
+            for (int possibilityIndex = 0; possibilityIndex < row.length; possibilityIndex++) {
                 // if adjacent pixel at position (x + row[k], y + col[k]) is
                 // a valid pixel and have same color as that of current pixel
-                if (isSafe(M, m, n, x + row[k], y + col[k], target)) {
-                    // enqueue adjacent pixel
-                    q.add(new Pair(x + row[k], y + col[k]));
+                Pair temp = new Pair(x + row[possibilityIndex], y + col[possibilityIndex]);
+                if (!marked.contains(temp)) {
+                    if (BoardUtils.isSafe(sheet, height, width, x + row[possibilityIndex], y + col[possibilityIndex], target)) {
+                        processQueue.add(temp);
+                    }
                 }
+                marked.add(temp);
             }
         }
     }
@@ -135,14 +137,4 @@ public class BucketFillOperation extends FillOperation {
         }
     }
     */
-    
-}
-
-class Pair {
-    int x, y;
-
-    public Pair(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
 }
