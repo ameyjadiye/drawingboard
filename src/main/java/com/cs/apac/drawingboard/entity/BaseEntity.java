@@ -1,5 +1,9 @@
 package com.cs.apac.drawingboard.entity;
 
-public class BaseEntity implements Entity {
+/**
+ * This is a parent class for all the entities in DrawingBoard Application.
+ * @author ameyjadiye
+ */
+public abstract class BaseEntity implements Entity {
 
 }

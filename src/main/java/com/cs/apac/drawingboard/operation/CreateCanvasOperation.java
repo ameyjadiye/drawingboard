@@ -2,10 +2,19 @@ package com.cs.apac.drawingboard.operation;
 
 import com.cs.apac.drawingboard.entity.holder.Canvas;
 import com.cs.apac.drawingboard.entity.shape.Point;
+import com.cs.apac.drawingboard.factory.OperationFactory;
 import com.cs.apac.drawingboard.util.Command;
-
+/**
+ * Class for creating the canvas.
+ * @author ameyjadiye
+ *
+ */
 public class CreateCanvasOperation extends BaseOperation implements CreateOperation {
 
+    /**
+     * Constructor for getting instacne from {@link OperationFactory}.
+     * @param command command.
+     */
     public CreateCanvasOperation(Command command) {
         this.setCommand(command);
     }

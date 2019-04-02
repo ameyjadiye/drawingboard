@@ -3,10 +3,20 @@ package com.cs.apac.drawingboard.operation;
 import com.cs.apac.drawingboard.entity.holder.Canvas;
 import com.cs.apac.drawingboard.entity.shape.Line;
 import com.cs.apac.drawingboard.entity.shape.Rectangle;
+import com.cs.apac.drawingboard.factory.OperationFactory;
 import com.cs.apac.drawingboard.util.Command;
-
+/**
+ * Operation class for drawing {@link Rectangle}.
+ * @author ameyjadiye
+ *
+ */
 public class DrawRectangleOperation extends DrawLineOperation implements DrawOperation {
 
+    /**
+     * Constructor for returning instance from {@link OperationFactory}.
+     * @param command command.
+     * @param canvas canvas.
+     */
     public DrawRectangleOperation(Command command, Canvas canvas) {
         super(command, canvas);
     }
@@ -41,6 +51,12 @@ public class DrawRectangleOperation extends DrawLineOperation implements DrawOpe
         printCavas();
     }
 
+    /**
+     * For drawing rectangle.
+     * @param rect rectangle.
+     * @param height height.
+     * @param width width.
+     */
     void drawRectangle(Rectangle rect, int height, int width) {
         drawLine(rect.getUpper(), height, width);
         drawLine(rect.getLeft(), height, width);

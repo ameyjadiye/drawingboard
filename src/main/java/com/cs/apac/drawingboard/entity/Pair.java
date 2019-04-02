@@ -1,25 +1,33 @@
 package com.cs.apac.drawingboard.entity;
 
+/**
+ * A pair class is nothing but the holder of x, y coordinates. same thing can be
+ * achieved with arrays but looks dirty. this one is clean way to have pairs :)
+ *
+ * @author ameyjadiye
+ *
+ */
 public class Pair extends BaseEntity {
+    /**
+     * just x, y co-ordinates.
+     */
     int x, y;
 
+    /**
+     * Constructor for Pair class.
+     * @param x x coordinates.
+     * @param y y coordinates.
+     */
     public Pair(int x, int y) {
         this.x = x;
         this.y = y;
     }
-    
+
     /**
      * @return the x
      */
     public int getX() {
         return x;
-    }
-
-    /**
-     * @param x the x to set
-     */
-    public void setX(int x) {
-        this.x = x;
     }
 
     /**
@@ -29,18 +37,9 @@ public class Pair extends BaseEntity {
         return y;
     }
 
-    /**
-     * @param y the y to set
-     */
-    public void setY(int y) {
-        this.y = y;
-    }
-
-
-
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -54,22 +53,27 @@ public class Pair extends BaseEntity {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Pair other = (Pair) obj;
-        if (x != other.x)
+        if (x != other.x) {
             return false;
-        if (y != other.y)
+        }
+        if (y != other.y) {
             return false;
+        }
         return true;
     }
 

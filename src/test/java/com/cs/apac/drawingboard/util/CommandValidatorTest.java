@@ -75,6 +75,12 @@ public class CommandValidatorTest {
         Command command = new Command("L", new String[] { "1", "2", "3", "4" });
         assertFalse(CommandValidator.isValidCommand(command));
     }
+    
+    @Test(expected = InvalidParameters.class)
+    public void testIsValidCommandForDrawLine7() throws InvalidParameters {
+        Command command = new Command("L", new String[] { "5", "2", "1", "2" });
+        assertFalse(CommandValidator.isValidCommand(command));
+    }
 
     @Test
     public void testIsValidCommandForDrawLine6() throws InvalidParameters {
@@ -116,6 +122,19 @@ public class CommandValidatorTest {
     public void testIsValidCommandForDrawRectangle6() throws InvalidParameters {
         Command command = new Command("R", new String[] { "2", "1", "4", "4" });
         assertTrue(CommandValidator.isValidCommand(command));
+    }
+    
+    @Test(expected = InvalidParameters.class)
+    public void testIsValidCommandForDrawRectangle7() throws InvalidParameters {
+        Command command = new Command("R", new String[] { "4", "2", "1", "3" });
+        assertFalse(CommandValidator.isValidCommand(command));
+    }
+    
+
+    @Test(expected = InvalidParameters.class)
+    public void testIsValidCommandForDrawRectangle8() throws InvalidParameters {
+        Command command = new Command("R", new String[] { "4", "2", "1", "2" });
+        assertFalse(CommandValidator.isValidCommand(command));
     }
 
     @Test(expected = InvalidParameters.class)

@@ -3,97 +3,110 @@
  */
 package com.cs.apac.drawingboard.operation;
 
-import com.cs.apac.drawingboard.entity.holder.Canvas;
-import com.cs.apac.drawingboard.factory.OperationFactory;
-import com.cs.apac.drawingboard.operation.BucketFillOperation;
-import com.cs.apac.drawingboard.operation.CreateCanvasOperation;
-import com.cs.apac.drawingboard.operation.DrawLineOperation;
-import com.cs.apac.drawingboard.operation.DrawRectangleOperation;
-import com.cs.apac.drawingboard.operation.Operation;
-import com.cs.apac.drawingboard.operation.QuitOperation;
-import com.cs.apac.drawingboard.util.Command;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import com.cs.apac.drawingboard.entity.holder.Canvas;
+import com.cs.apac.drawingboard.exception.NoSuchCommandException;
+import com.cs.apac.drawingboard.factory.OperationFactory;
+import com.cs.apac.drawingboard.util.Command;
 
 /**
  * @author amey
  *
  */
-public class OperationFactoryTest extends TestCase {
+public class OperationFactoryTest {
 
-    
     OperationFactory factory = new OperationFactory();
-    
+
     /**
-     * Test method for {@link com.cs.apac.drawingboard.factory.OperationFactory#getOperation(com.cs.apac.drawingboard.util.Command, com.cs.apac.drawingboard.entity.holder.Canvas)}.
+     * Test method for {@link OperationFactory}
      */
+    @Test
     public final void testGetCreateOperation() {
-        Command command = new Command("C", new String[] {"20","5"});
+        Command command = new Command("C", new String[] { "20", "5" });
         Canvas canvas = null;
         Operation op = factory.getOperation(command, canvas);
-        
+
         assertNotNull(op);
-        boolean result  = false;
+        boolean result = false;
         if (op instanceof CreateCanvasOperation) {
-            result  = true;
+            result = true;
         }
-        assertEquals(true,result);
+        assertEquals(true, result);
     }
 
+    @Test
     public final void testGetDrawLineOperation() {
-        Command command = new Command("L", new String[] {"4","2","4","5"});
+        Command command = new Command("L", new String[] { "4", "2", "4", "5" });
         Canvas canvas = null;
         Operation op = factory.getOperation(command, canvas);
-        
+
         assertNotNull(op);
-        boolean result  = false;
+        boolean result = false;
         if (op instanceof DrawLineOperation) {
-            result  = true;
+            result = true;
         }
-        
-        assertEquals(true,result);
-        
+
+        assertEquals(true, result);
+
     }
+
+    @Test
     public final void testGetDrawRectOperation() {
-        Command command = new Command("R", new String[] {"14", "1", "18", "5"});
+        Command command = new Command("R", new String[] { "14", "1", "18", "5" });
         Canvas canvas = null;
         Operation op = factory.getOperation(command, canvas);
-        
+
         assertNotNull(op);
-        boolean result  = false;
+        boolean result = false;
         if (op instanceof DrawRectangleOperation) {
-            result  = true;
+            result = true;
         }
-        
-        assertEquals(true,result);
-        
+
+        assertEquals(true, result);
+
     }
+
+    @Test
     public final void testGetDOBucketfillOperation() {
-        Command command = new Command("B", new String[] {"10","5", "c"});
+        Command command = new Command("B", new String[] { "10", "5", "c" });
         Canvas canvas = null;
         Operation op = factory.getOperation(command, canvas);
-        
+
         assertNotNull(op);
-        boolean result  = false;
+        boolean result = false;
         if (op instanceof BucketFillOperation) {
-            result  = true;
+            result = true;
         }
-        
-        assertEquals(true,result);
-        
+
+        assertEquals(true, result);
+
     }
+
+    @Test
     public final void testGetQuitOperation() {
         Command command = new Command("Q", new String[] {});
         Canvas canvas = null;
         Operation op = factory.getOperation(command, canvas);
-        
+
         assertNotNull(op);
-        boolean result  = false;
+        boolean result = false;
         if (op instanceof QuitOperation) {
-            result  = true;
+            result = true;
         }
-        
-        assertEquals(true,result);
-        
+
+        assertEquals(true, result);
+
+    }
+
+    @Test(expected = NoSuchCommandException.class)
+    public final void testGetRandomOperation() {
+        Command command = new Command("random_word", new String[] {});
+        Canvas canvas = null;
+        Operation op = factory.getOperation(command, canvas);
+
     }
 }

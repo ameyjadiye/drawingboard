@@ -2,18 +2,51 @@ package com.cs.apac.drawingboard.entity.shape;
 
 import com.cs.apac.drawingboard.entity.BaseEntity;
 
-public class Rectangle extends BaseEntity{
-    
+/**
+ * <p>In Euclidean plane geometry, a rectangle is a quadrilateral with four right
+ * angles. It can also be defined as an equiangular quadrilateral, since
+ * equiangular means that all of its angles are equal (360°/4 = 90°). It can
+ * also be defined as a parallelogram containing a right angle. A rectangle with
+ * four sides of equal length is a square. The term oblong is occasionally used
+ * to refer to a non-square rectangle.</p>
+ * <p>
+ * The word rectangle comes from the Latin rectangulus, which is a combination
+ * of rectus (as an adjective, right, proper) and angulus (angle).</p>
+ * More info on
+ * <a href="https://en.wikipedia.org/wiki/Rectangle">
+ * https://en.wikipedia.org/wiki/Rectangle </a>
+ * @author ameyjadiye
+ *
+ */
+public class Rectangle extends BaseEntity {
+
+    /**
+     * Upper edge.
+     */
     Line upper;
 
+    /**
+     * Left edge.
+     */
     Line left;
 
+    /**
+     * Right edge.
+     */
     Line right;
 
+    /**
+     * Bottom edge.
+     */
     Line bottom;
 
-    
-    
+    /**
+     * Constructor.
+     * @param upper - upper line;
+     * @param left - left line.
+     * @param right - right line.
+     * @param bottom - bottom line.
+     */
     public Rectangle(Line upper, Line left, Line right, Line bottom) {
         super();
         this.upper = upper;
@@ -30,24 +63,10 @@ public class Rectangle extends BaseEntity{
     }
 
     /**
-     * @param upper the upper to set
-     */
-    public void setUpper(Line upper) {
-        this.upper = upper;
-    }
-
-    /**
      * @return the left
      */
     public Line getLeft() {
         return left;
-    }
-
-    /**
-     * @param left the left to set
-     */
-    public void setLeft(Line left) {
-        this.left = left;
     }
 
     /**
@@ -58,26 +77,10 @@ public class Rectangle extends BaseEntity{
     }
 
     /**
-     * @param right the right to set
-     */
-    public void setRight(Line right) {
-        this.right = right;
-    }
-
-    /**
      * @return the bottom
      */
     public Line getBottom() {
         return bottom;
     }
 
-    /**
-     * @param bottom the bottom to set
-     */
-    public void setBottom(Line bottom) {
-        this.bottom = bottom;
-    }
-
-    
-    
 }

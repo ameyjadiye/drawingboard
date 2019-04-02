@@ -1,5 +1,13 @@
+/**
+ *
+ */
 package com.cs.apac.drawingboard.operation;
 
+/**
+ * Base class for Draw diffrent shapes.
+ * @author ameyjadiye
+ *
+ */
 public abstract class DrawShapeOperation extends BaseOperation implements DrawOperation {
 
 }
