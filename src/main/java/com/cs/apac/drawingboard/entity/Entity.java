@@ -1,3 +1,6 @@
+/**
+ *
+ */
 package com.cs.apac.drawingboard.entity;
 
 /**
