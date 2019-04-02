@@ -57,9 +57,9 @@ public class CommandValidator {
                 if (!(x1 == x2 || y1 == y2)) {
                     throw new InvalidParameters("Only vertical or horizontal lines are allowed!! i.e x1=x2 OR y1=y2");
                 }
-                
-                if (!(x2>=x1 && y2>=y1)) {
-                    throw new InvalidParameters("x2,y2 should always be greater than x1,y1 as drawing goes left to right");
+
+                if (!(x2 >= x1 && y2 >= y1)) {
+                    throw new InvalidParameters("x2,y2 should always be greater than x1,y1. flow[left -> right]");
                 }
 
             } catch (NumberFormatException nfe) {
@@ -84,8 +84,8 @@ public class CommandValidator {
                             "Command must have 4 param, all positive numeric and > 0, Ex. L 1 2 6 2");
                 }
 
-                if (!(x2>=x1 && y2>=y1)) {
-                    throw new InvalidParameters("x2,y2 should always be greater than x1,y1 as x1,y1 should be upper left and x2,y2 should be lower right.");
+                if (!(x2 >= x1 && y2 >= y1)) {
+                    throw new InvalidParameters("x2,y2 must be >= x1,y1.flow[left -> right],flow[top -> bottom]");
                 }
 
             } catch (NumberFormatException nfe) {
