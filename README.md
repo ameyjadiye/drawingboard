@@ -2,6 +2,7 @@
 
 Drawingboard is the console application for #terminal lovers to draw things on console. Hit the diffrent commands and enjoy the drawing. :-)
 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project and draw things.
@@ -54,7 +55,22 @@ cd drawingboard
 mvn exec:java
 
 ```
-and thats it, your app will be up and running.
+and thats it, your app will be up and running. use below commands to use app.
+
+```
+Command 		Description
+C w h           Should create a new canvas of width w and height h.
+L x1 y1 x2 y2   Should create a new line from (x1,y1) to (x2,y2). Currently only
+                horizontal or vertical lines are supported. Horizontal and vertical lines
+                will be drawn using the 'x' character.
+R x1 y1 x2 y2   Should create a new rectangle, whose upper left corner is (x1,y1) and
+                lower right corner is (x2,y2). Horizontal and vertical lines will be drawn
+                using the 'x' character.
+B x y c         Should fill the entire area connected to (x,y) with "colour" c. The
+                behaviour of this is the same as that of the "bucket fill" tool in paint
+                programs.
+Q               Should quit the program.
+```
 
 ## Running the tests
 For shooting everything once. :)
@@ -100,10 +116,14 @@ Just do ```mvn clean verify package``` in source directory and use the .jar file
 * [Eclipse](https://www.eclipse.org/) - IDE used
 * [Maven](https://maven.apache.org/) - Dependency Management
 
+## Future functionalities.
+* some more shapes like circle, rhombus, diagonal line. _(need to study some maths)_
+* undo, redo Operations.
+* multiple canvas on canvas holder etc.
+
 ## Authors
 
-* **Amey Jadiye** - 
-
+**Amey Jadiye**
 * [https://github.com/ameyjadiye](https://github.com/ameyjadiye)
 * [https://www.linkedin.com/in/ameyjadiye/](https://www.linkedin.com/in/ameyjadiye/)
 
