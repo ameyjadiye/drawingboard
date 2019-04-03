@@ -47,7 +47,7 @@
 
 
 	<build>
-		<defaultGoal>clean verify checkstyle:check spotbugs:check javadoc:javadoc</defaultGoal>
+		<defaultGoal>mvn clean verify test package install spotbugs:check pmd:pmd checkstyle:check javadoc:javadoc</defaultGoal>
 		<pluginManagement>
 			<plugins>
 				<plugin>
