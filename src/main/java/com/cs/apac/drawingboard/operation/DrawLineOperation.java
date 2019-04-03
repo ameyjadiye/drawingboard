@@ -54,6 +54,18 @@ public class DrawLineOperation extends DrawShapeOperation implements DrawOperati
             line.setY2(height);
         }
 
+        if (line.getX2() < line.getX1()) {
+            int x1 = line.getX1();
+            int x2 = line.getX2();
+            line.setX2(x1);
+            line.setX1(x2);
+        } else if (line.getY2() < line.getY1()) {
+            int y1 = line.getY1();
+            int y2 = line.getY2();
+            line.setY2(y1);
+            line.setY1(y2);
+        }
+
         for (int i = line.getY1() - 1; i <= line.getY2() - 1 && i < height; i++) {
             for (int j = line.getX1() - 1; j <= line.getX2() - 1 && j < width; j++) {
                 getCanvas().getSheet()[i][j].setColor(lineCharachter);

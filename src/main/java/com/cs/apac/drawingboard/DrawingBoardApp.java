@@ -54,20 +54,11 @@ public class DrawingBoardApp {
     private void startLoop() {
         getUserName();
         System.out.println(BoardUtils.helpMsg());
-        System.out.print(username + "@drawingboard:~/cs/apac$ ");
+        System.out.print(username + "@drawingboard:~/cs/apac/" + username + "$ ");
         while (scanner.hasNextLine()) {
             execute(scanner.nextLine());
-            System.out.print(username + "@drawingboard:~/cs/apac$ ");
+            System.out.print(username + "@drawingboard:~/cs/apac/" + username + "$ ");
         }
-    }
-
-    /**
-     *
-     */
-    private void getUserName() {
-        System.out.print("Enter your name > ");
-        username = scanner.nextLine();
-        username = "".equals(username.trim()) ? "amey" : username;
     }
 
     /**
@@ -82,4 +73,14 @@ public class DrawingBoardApp {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+    * To get users name.
+    */
+    private void getUserName() {
+        System.out.print("Enter your name $ ");
+        username = scanner.nextLine();
+        username = "".equals(username.trim()) ? "amey" : username.toLowerCase().split("\\s+")[0];
+    }
+
 }

@@ -4,7 +4,7 @@
 package com.cs.apac.drawingboard.operation;
 
 /**
- * Base class for Draw diffrent shapes.
+ * Base class for Draw different shapes.
  * @author ameyjadiye
  *
  */

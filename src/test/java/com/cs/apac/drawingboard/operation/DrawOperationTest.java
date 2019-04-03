@@ -107,8 +107,12 @@ public class DrawOperationTest {
         canvasHolder.setOperation(opLine);
         canvasHolder.action();
 
-        char[][] expected = { " x   ".toCharArray(), " x   ".toCharArray(), " x   ".toCharArray(),
-                " x   ".toCharArray(), " x   ".toCharArray(), };
+        char[][] expected = { 
+                " x   ".toCharArray(), 
+                " x   ".toCharArray(), 
+                " x   ".toCharArray(),
+                " x   ".toCharArray(), 
+                " x   ".toCharArray(), };
 
         assertTrue(equal(expected, op.getCanvas().toCharArray()));
     }
@@ -134,12 +138,78 @@ public class DrawOperationTest {
         canvasHolder.setOperation(opLine);
         canvasHolder.action();
 
-        char[][] expected = { "xxx  ".toCharArray(), "x x  ".toCharArray(), "xxx  ".toCharArray(),
-                "     ".toCharArray(), "     ".toCharArray(), };
+        char[][] expected = { 
+                "xxx  ".toCharArray(), 
+                "x x  ".toCharArray(), 
+                "xxx  ".toCharArray(),
+                "     ".toCharArray(), 
+                "     ".toCharArray(), };
+
+        assertTrue(equal(expected, op.getCanvas().toCharArray()));
+    }
+    
+    @Test
+    public final void testDrawRectangleTes1() throws NoCanvasPresentException {
+        Command command = new Command("C", new String[] { "5", "5" });
+        Canvas canvas = null;
+        CreateOperation op = (CreateOperation) factory.getOperation(command, canvas);
+
+        assertNull(op.getCanvas());
+        canvasHolder.setOperation(op);
+        canvasHolder.action();
+        assertNotNull(op.getCanvas());
+
+        assertEquals(5, op.getCanvas().getHeight());
+        assertEquals(5, op.getCanvas().getWidth());
+
+        command = new Command("R", new String[] { "3", "3", "1", "1" });
+        canvas = op.getCanvas();
+        DrawRectangleOperation opLine = (DrawRectangleOperation) factory.getOperation(command, canvas);
+
+        canvasHolder.setOperation(opLine);
+        canvasHolder.action();
+
+        char[][] expected = { 
+                "xxx  ".toCharArray(), 
+                "x x  ".toCharArray(), 
+                "xxx  ".toCharArray(),
+                "     ".toCharArray(), 
+                "     ".toCharArray(), };
 
         assertTrue(equal(expected, op.getCanvas().toCharArray()));
     }
 
+    @Test
+    public final void testDrawRectangleTes2() throws NoCanvasPresentException {
+        Command command = new Command("C", new String[] { "5", "5" });
+        Canvas canvas = null;
+        CreateOperation op = (CreateOperation) factory.getOperation(command, canvas);
+
+        assertNull(op.getCanvas());
+        canvasHolder.setOperation(op);
+        canvasHolder.action();
+        assertNotNull(op.getCanvas());
+
+        assertEquals(5, op.getCanvas().getHeight());
+        assertEquals(5, op.getCanvas().getWidth());
+
+        command = new Command("R", new String[] { "3", "1", "1", "3" });
+        canvas = op.getCanvas();
+        DrawRectangleOperation opLine = (DrawRectangleOperation) factory.getOperation(command, canvas);
+
+        canvasHolder.setOperation(opLine);
+        canvasHolder.action();
+
+        char[][] expected = { 
+                "xxx  ".toCharArray(), 
+                "x x  ".toCharArray(), 
+                "xxx  ".toCharArray(),
+                "     ".toCharArray(), 
+                "     ".toCharArray(), };
+
+        assertTrue(equal(expected, op.getCanvas().toCharArray()));
+    }
+    
     @Test
     public final void testBucketFillTest() throws NoCanvasPresentException {
         Command command = new Command("C", new String[] { "5", "5" });
@@ -168,8 +238,12 @@ public class DrawOperationTest {
         canvasHolder.setOperation(bfp);
         canvasHolder.action();
 
-        char[][] expected = { "xxx**".toCharArray(), "x x**".toCharArray(), "xxx**".toCharArray(),
-                "*****".toCharArray(), "*****".toCharArray(), };
+        char[][] expected = { 
+                "xxx**".toCharArray(), 
+                "x x**".toCharArray(), 
+                "xxx**".toCharArray(),
+                "*****".toCharArray(), 
+                "*****".toCharArray(), };
 
         assertTrue(equal(expected, op.getCanvas().toCharArray()));
     }
@@ -202,13 +276,17 @@ public class DrawOperationTest {
         canvasHolder.setOperation(bfp);
         canvasHolder.action();
 
-        char[][] expected = { "xxx**".toCharArray(), "x x**".toCharArray(), "xxx**".toCharArray(),
-                "*****".toCharArray(), "*****".toCharArray(), };
+        char[][] expected = { 
+                "xxx**".toCharArray(), 
+                "x x**".toCharArray(), 
+                "xxx**".toCharArray(),
+                "*****".toCharArray(), 
+                "*****".toCharArray(), };
 
         assertTrue(equal(expected, op.getCanvas().toCharArray()));
     }
 
-    public static boolean equal(final char[][] arr1, final char[][] arr2) {
+    private static boolean equal(final char[][] arr1, final char[][] arr2) {
         if (arr1 == null) {
             return (arr2 == null);
         }
