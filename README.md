@@ -55,6 +55,13 @@ cd drawingboard
 mvn exec:java
 
 ```
+**OR**
+
+```
+cd target
+java -jar drawingboard-1.0.0.jar
+```
+
 and thats it, your app will be up and running. use below commands to use app.
 
 ```
@@ -74,6 +81,7 @@ Q               Should quit the program.
 
 ## Running the tests
 For shooting everything once. :)
+
 ```
 mvn clean verify package test spotbugs:check pmd:pmd checkstyle:check javadoc:javadoc
 ```
